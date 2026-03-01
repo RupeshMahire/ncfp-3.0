@@ -162,7 +162,7 @@ function App() {
       <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
         <div className="nav-container">
           <div className="logo">
-            <img src="/logo.png" alt="NCFP 3.0" className="nav-logo" />
+            <img src="/logo.png" alt="NCFP 3.0" className="nav-logo" loading="lazy" />
           </div>
           <div className="nav-center">
             <p className="college-name">
@@ -351,6 +351,7 @@ function App() {
                     src={s.logo}
                     alt={s.name}
                     className="sponsor-logo"
+                    loading="lazy"
                     onError={(e) => {
                       e.target.style.display = 'none';
                       e.target.nextSibling.style.display = 'flex';
@@ -385,7 +386,7 @@ function App() {
         <div className="speakers-grid">
           {speakersData.map((s, i) => (
             <div key={i} className="speaker-card reveal">
-              <img src={s.photo} alt={s.name} className="speaker-photo" />
+              <img src={s.photo} alt={s.name} className="speaker-photo" loading="lazy" />
               <div className="speaker-overlay">
                 <span className="speaker-tag">{s.tag}</span>
                 <h3 className="speaker-name">{s.name}</h3>
@@ -587,7 +588,7 @@ function App() {
           <div className="footer-bottom">
             <p>© 2026 National Conference on Food Packaging. All rights reserved.</p>
             <span>
-              Crafted with ♥ by me <a href="https://www.linkedin.com/in/rupesh-mahire-sci" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>Rupesh</a>
+              Crafted with ♥ by <a href="https://www.linkedin.com/in/rupesh-mahire-sci" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>Rupesh</a>
             </span>
           </div>
         </div>

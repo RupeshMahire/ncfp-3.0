@@ -33,6 +33,12 @@
   --green-mist: #eaf5ee;
   /* Near-white green tint — lightest BG */
 
+  /* === SAFE AREAS (for mobile) === */
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+
   /* === GRADIENTS === */
   --gradient-gm: linear-gradient(135deg, var(--green-rich) 0%, var(--maroon-rich) 100%);
   --gradient-mg: linear-gradient(135deg, var(--maroon-rich) 0%, var(--green-rich) 100%);
@@ -55,7 +61,7 @@
 
   /* === TYPOGRAPHY === */
   --font-serif: 'Playfair Display', Georgia, serif;
-  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
   --font-display: 'Cormorant Garamond', Georgia, serif;
   /* Unique display font for numerals & accents */
 
