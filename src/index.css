@@ -89,9 +89,10 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-  font-size: 16px;
+html,
+body {
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
@@ -99,7 +100,6 @@ body {
   color: var(--green-rich);
   background-color: var(--green-mist);
   line-height: 1.7;
-  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -258,6 +258,8 @@ img {
   padding: var(--section-pad);
   max-width: var(--max-width);
   margin: 0 auto;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .section-center {
