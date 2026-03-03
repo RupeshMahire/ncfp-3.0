@@ -4,6 +4,8 @@ import GlimpsesPage from './GlimpsesPage'
 import CommitteePage from './CommitteePage'
 import SpeakersPage from './SpeakersPage'
 
+const BROCHURE_PDF_PATH = '/brochure.pdf' // Path to the brochure PDF in the public folder
+
 /* ============================================================
    DATA
    ============================================================ */
@@ -163,6 +165,39 @@ function StatCounter({ value, label }) {
 }
 
 /* ============================================================
+   PDF MODAL COMPONENT
+   ============================================================ */
+function PDFModal({ isOpen, onClose, pdfPath }) {
+  if (!isOpen) return null;
+
+  return (
+    <div className="pdf-modal-overlay" onClick={onClose}>
+      <div className="pdf-modal-container" onClick={(e) => e.stopPropagation()}>
+        <div className="pdf-modal-header">
+          <h3>Conference Brochure</h3>
+          <button className="pdf-modal-close" onClick={onClose} aria-label="Close modal">
+            <i className="fas fa-times"></i>
+          </button>
+        </div>
+        <div className="pdf-modal-body">
+          <iframe
+            src={`${pdfPath}#toolbar=1&navpanes=0&scrollbar=1`}
+            title="Brochure PDF Preview"
+            width="100%"
+            height="100%"
+            frameBorder="0"
+          >
+            <p>Your browser does not support iframes.
+              <a href={pdfPath} target="_blank" rel="noopener noreferrer">Click here to view the PDF</a>.
+            </p>
+          </iframe>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ============================================================
    APP COMPONENT
    ============================================================ */
 function App() {
@@ -172,6 +207,7 @@ function App() {
   const [showGlimpses, setShowGlimpses] = useState(false);
   const [showCommittee, setShowCommittee] = useState(false);
   const [showSpeakers, setShowSpeakers] = useState(false);
+  const [showPDFModal, setShowPDFModal] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 60);
@@ -329,9 +365,12 @@ function App() {
             <a href="https://forms.gle/B4ZhHZuCrwnBVuSG9" target="_blank" rel="noopener noreferrer" className="btn-hero-primary">
               <i className="fas fa-rocket"></i> Register Now
             </a>
-            <a href="#themes" className="btn-hero-secondary">
+            <button
+              className="btn-hero-secondary"
+              onClick={() => setShowPDFModal(true)}
+            >
               <i className="fas fa-download"></i> Download Brochure
-            </a>
+            </button>
             <button className="btn-hero-glimpses" onClick={() => setShowSpeakers(true)}>
               <i className="fas fa-microphone-alt"></i> View Previous Speakers
             </button>
@@ -668,6 +707,13 @@ function App() {
           </div>
         </div>
       </footer>
+
+      {/* PDF Preview Modal */}
+      <PDFModal
+        isOpen={showPDFModal}
+        onClose={() => setShowPDFModal(false)}
+        pdfPath={BROCHURE_PDF_PATH}
+      />
 
     </div>
   );

@@ -2794,3 +2794,106 @@
 .cat--orange .cmember-card::before {
   background: linear-gradient(90deg, var(--orange-rich), var(--green-mid));
 }
+
+/* ============================================================
+   PDF MODAL STYLES
+   ============================================================ */
+.pdf-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(27, 61, 27, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+  animation: fadeIn 0.4s ease;
+}
+
+.pdf-modal-container {
+  background: var(--cream-white);
+  width: 100%;
+  max-width: 1000px;
+  height: 90vh;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  animation: modalSlideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (max-width: 768px) {
+  .pdf-modal-container {
+    height: 95vh;
+    border-radius: var(--radius-lg);
+  }
+
+  .pdf-modal-overlay {
+    padding: var(--space-xs);
+  }
+}
+
+.pdf-modal-header {
+  padding: var(--space-md) var(--space-lg);
+  background: var(--glass-cream);
+  border-bottom: 1px solid var(--brown-sand);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pdf-modal-header h3 {
+  font-family: var(--font-primary);
+  color: var(--green-deep);
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.pdf-modal-close {
+  background: var(--orange-rich);
+  border: none;
+  color: white;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--ease-smooth);
+}
+
+.pdf-modal-close:hover {
+  background: var(--orange-mid);
+  transform: rotate(90deg);
+}
+
+.pdf-modal-body {
+  flex: 1;
+  background: #525659;
+  /* Standard PDF viewer background */
+}
+
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
