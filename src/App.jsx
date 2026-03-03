@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react'
 import './App.css'
 import GlimpsesPage from './GlimpsesPage'
 import CommitteePage from './CommitteePage'
+import SpeakersPage from './SpeakersPage'
 
 /* ============================================================
    DATA
@@ -170,6 +171,7 @@ function App() {
   const [whySlide, setWhySlide] = useState(0);
   const [showGlimpses, setShowGlimpses] = useState(false);
   const [showCommittee, setShowCommittee] = useState(false);
+  const [showSpeakers, setShowSpeakers] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 60);
@@ -185,7 +187,7 @@ function App() {
       window.removeEventListener('scroll', handleScroll);
       observer.disconnect();
     };
-  }, [showGlimpses, showCommittee]); // re-run when page changes
+  }, [showGlimpses, showCommittee, showSpeakers]); // re-run when page changes
 
   // Auto-advance why slideshow
   useEffect(() => {
@@ -211,6 +213,14 @@ function App() {
     }} />;
   }
 
+  /* ── Speakers Page ── */
+  if (showSpeakers) {
+    return <SpeakersPage onBack={() => {
+      setShowSpeakers(false);
+      setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 50);
+    }} />;
+  }
+
   return (
     <div className="ncfp-website">
 
@@ -229,7 +239,7 @@ function App() {
           </div>
           <div className="nav-right">
             <div className="social-icons">
-              <a href="https://www.linkedin.com/in/ncfp-national-conference-on-food-packaging" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <a href="https://www.linkedin.com/in/ncfp-pvg-coet-pune-030a74356?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                 <i className="fab fa-linkedin"></i>
               </a>
               <a href="https://www.instagram.com/ncfp_2026" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
@@ -250,11 +260,12 @@ function App() {
         </div>
         <div className={`nav-menu ${menuOpen ? 'open' : ''}`} id="nav-menu" role="navigation" aria-label="Main navigation">
           <div className="nav-menu-links">
-            {['home', 'about', 'themes', 'speakers', 'why', 'contact'].map(id => (
-              <a key={id} href={`#${id}`} onClick={() => setMenuOpen(false)}>
-                {id.charAt(0).toUpperCase() + id.slice(1)}
-              </a>
-            ))}
+            <a
+              href="#speakers"
+              onClick={(e) => { e.preventDefault(); setMenuOpen(false); setShowSpeakers(true); }}
+            >
+              <i className="fas fa-microphone-alt" style={{ marginRight: '6px' }}></i>Speakers
+            </a>
             <a
               href="#glimpses"
               onClick={(e) => { e.preventDefault(); setMenuOpen(false); setShowGlimpses(true); }}
@@ -321,6 +332,9 @@ function App() {
             <a href="#themes" className="btn-hero-secondary">
               <i className="fas fa-download"></i> Download Brochure
             </a>
+            <button className="btn-hero-glimpses" onClick={() => setShowSpeakers(true)}>
+              <i className="fas fa-microphone-alt"></i> View Previous Speakers
+            </button>
             <button className="btn-hero-glimpses" onClick={() => setShowGlimpses(true)}>
               <i className="fas fa-images"></i> View Event Glimpses
             </button>
@@ -603,7 +617,7 @@ function App() {
                 advancement of food safety, AI-driven innovation, and sustainable packaging solutions.
               </p>
               <div className="footer-social">
-                <a href="https://www.linkedin.com/in/ncfp-3-o-56b001294?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <a href="https://www.linkedin.com/in/ncfp-pvg-coet-pune-030a74356?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                   <i className="fab fa-linkedin-in"></i>
                 </a>
                 <a href="https://www.instagram.com/ncfp_2026" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
