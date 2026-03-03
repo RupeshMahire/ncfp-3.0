@@ -15,6 +15,7 @@ const committeeCategories = [
         title: 'Faculty Advisory Committee',
         subtitle: 'Guiding the conference with academic rigor and institutional expertise.',
         colorClass: 'cat--green',
+        gridCentered: true,
         members: [
             {
                 photo: '/committee/madhura_mahajan.jpg',
@@ -34,24 +35,7 @@ const committeeCategories = [
                 email: '',
                 initial: 'P',
             },
-            {
-                photo: '/committee/gaurav_fasate.jpeg',
-                name: 'Prof. Gaurav Fasate',
-                role: 'Faculty Coordinator',
-                desc: 'Associate Professor',
-                linkedin: '',
-                email: '',
-                initial: 'G',
-            },
-            {
-                photo: '/committee/mhaswasde.jpeg',
-                name: 'Prof. Nikhila Mhaswasde',
-                role: 'Faculty Coordinator',
-                desc: 'Associate Professor',
-                linkedin: '',
-                email: '',
-                initial: 'N',
-            },
+
         ],
     },
     {
@@ -210,7 +194,7 @@ function CategorySection({ cat }) {
                 <div className="section-divider" style={{ margin: '20px 0 0' }}></div>
             </div>
 
-            <div className="cmembers-grid">
+            <div className={`cmembers-grid${cat.gridCentered ? ' cmembers-grid--centered' : ''}`}>
                 {cat.members.map((m, i) => (
                     <MemberCard key={i} member={m} idx={i} />
                 ))}

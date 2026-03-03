@@ -1,62 +1,42 @@
+/* ============================================================
+   NCFP 3.0 — DESIGN SYSTEM
+   Food Packaging Theme: Freshness · Sustainability · Innovation
+   ============================================================ */
+
+/* ── Google Fonts ── */
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap');
 
-/* ============================================================
-   NCFP 3.0 — FOOD PACKAGING DESIGN SYSTEM
-   Palette: Fresh Green · Earthy Brown · Warm Beige · Soft Orange
-   Theme: Freshness · Sustainability · Food Safety · Innovation
-   ============================================================ */
 :root {
-  /* === FRESH GREEN FAMILY (Eco & Sustainability) === */
+  /* === FRESH GREEN FAMILY === */
   --green-deep: #1b3d1b;
-  /* Deep forest — hero bg, footer */
   --green-rich: #2d6a2d;
-  /* Brand green — primary buttons */
   --green-mid: #4a9e4a;
-  /* Mid green — links, accents */
   --green-sage: #7ab87a;
-  /* Sage — muted text on dark */
   --green-leaf: #a8d5a8;
-  /* Light leaf — subtle accents */
   --green-mist: #edf7ed;
-  /* Near-white green — light BG */
   --green-foam: #f4faf4;
-  /* Lightest BG wash */
 
-  /* === EARTHY BROWN FAMILY (Kraft Paper / Corrugated) === */
+  /* === EARTHY BROWN FAMILY === */
   --brown-deep: #3d2010;
-  /* Dark kraft — footer, kraft BG */
   --brown-rich: #6b3d1e;
-  /* Primary brown — kraft paper */
   --brown-mid: #9b6240;
-  /* Mid brown — borders, dividers */
   --brown-warm: #c4936a;
-  /* Warm tan — hover states */
   --brown-sand: #dbb88a;
-  /* Sandy — card borders */
   --brown-blush: #f0dcc8;
-  /* Light tan — section BG */
 
-  /* === WARM BEIGE / CREAM FAMILY (Natural Packaging) === */
+  /* === CREAM FAMILY === */
   --cream-deep: #d4ba8a;
-  /* Deep cream — borders */
   --cream-warm: #f5ead0;
-  /* Warm cream — section BG */
   --cream-light: #faf3e0;
-  /* Light cream — lightest BG */
   --cream-white: #fdfaf4;
-  /* Near white — card BG */
 
-  /* === SOFT ORANGE FAMILY (Food Vibrancy) === */
+  /* === SOFT ORANGE FAMILY === */
   --orange-rich: #d4622a;
-  /* Tomato-orange — CTAs, hero badges */
   --orange-mid: #e07b3a;
-  /* Warm orange — hover states */
   --orange-soft: #f0a060;
-  /* Soft peach — muted accents */
   --orange-mist: #fdf0e6;
-  /* Orange mist — subtle BG wash */
 
-  /* === SAFE AREAS (mobile) === */
+  /* === SAFE AREAS (iOS notch / dynamic island) === */
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
   --safe-left: env(safe-area-inset-left, 0px);
@@ -85,47 +65,135 @@
   --shadow-orange: 0 8px 32px rgba(212, 98, 42, 0.25);
   --shadow-kraft: 0 8px 32px rgba(107, 61, 30, 0.2);
 
-  /* === TYPOGRAPHY === */
+  /* === TYPOGRAPHY (Responsive) === */
   --font-primary: 'Outfit', 'Inter', system-ui, sans-serif;
   --font-sans: 'Inter', system-ui, sans-serif;
   --font-display: 'Cormorant Garamond', Georgia, serif;
 
-  /* === LAYOUT === */
+  --fs-xs: clamp(0.75rem, 1vw, 0.875rem);
+  --fs-sm: clamp(0.875rem, 1.25vw, 1rem);
+  --fs-base: clamp(1rem, 1.5vw, 1.125rem);
+  --fs-md: clamp(1.125rem, 2vw, 1.25rem);
+  --fs-lg: clamp(1.25rem, 2.5vw, 1.5rem);
+  --fs-xl: clamp(1.5rem, 3.5vw, 2rem);
+  --fs-2xl: clamp(2rem, 4.5vw, 3rem);
+  --fs-3xl: clamp(2.5rem, 6vw, 4.5rem);
+  --fs-hero: clamp(3rem, 10vw, 8.5rem);
+
+  /* === LAYOUT & SPACING (Responsive) === */
   --radius-sm: 8px;
   --radius-md: 16px;
   --radius-lg: 24px;
   --radius-xl: 40px;
   --max-width: 1280px;
-  --section-pad: 120px 24px;
+
+  --space-xxs: clamp(0.25rem, 0.5vw, 0.5rem);
+  --space-xs: clamp(0.5rem, 1vw, 0.75rem);
+  --space-sm: clamp(0.75rem, 1.5vw, 1rem);
+  --space-md: clamp(1rem, 2vw, 1.5rem);
+  --space-lg: clamp(1.5rem, 3vw, 2.5rem);
+  --space-xl: clamp(2.5rem, 5vw, 4rem);
+  --space-2xl: clamp(4rem, 8vw, 7rem);
+
+  /* === SECTION PADDING === */
+  --section-pad: var(--space-xl) var(--space-md);
 
   /* === TRANSITIONS === */
-  --ease-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-fast: all 0.25s ease;
+  --ease-smooth: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-fast: all 0.22s ease;
 }
 
 /* ============================================================
-   RESET & BASE
+   MODERN CSS RESET
    ============================================================ */
 *,
 *::before,
 *::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
-html,
-body {
+html {
   overflow-x: hidden;
-  width: 100%;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
   font-family: var(--font-primary);
   color: var(--brown-rich);
   background-color: var(--cream-white);
-  line-height: 1.7;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  width: 100%;
+  min-height: 100vh;
+  -webkit-tap-highlight-color: transparent;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  touch-action: manipulation;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+/* Skip link for accessibility */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 16px;
+  z-index: 9999;
+  background: var(--green-deep);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 16px;
 }
 
 h1,
@@ -152,7 +220,37 @@ ul {
 
 img {
   max-width: 100%;
+  height: auto;
   display: block;
+}
+
+/* Ensure buttons and inputs are accessible tap targets */
+button,
+[type="button"],
+[type="submit"],
+[type="reset"] {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* ============================================================
+   PERFORMANCE — Reduce motion for accessibility
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 /* ============================================================
@@ -160,75 +258,79 @@ img {
    ============================================================ */
 .glass-cream {
   background: var(--glass-cream);
-  backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
   border: 1px solid var(--glass-cream-b);
   box-shadow: var(--shadow-md);
 }
 
 .glass-green {
   background: var(--glass-green);
-  backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
   border: 1px solid var(--glass-green-b);
   box-shadow: var(--shadow-sm);
 }
 
 /* Section tag / badge */
 .section-tag {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   padding: 6px 18px;
   background: var(--orange-mist);
   color: var(--orange-rich);
   border: 1px solid rgba(212, 98, 42, 0.25);
   border-radius: 50px;
-  font-size: 0.75rem;
+  font-size: var(--fs-xs);
   font-weight: 700;
   font-family: var(--font-sans);
   text-transform: uppercase;
-  letter-spacing: 2.5px;
-  margin-bottom: 20px;
+  letter-spacing: 2px;
+  margin-bottom: var(--space-md);
 }
 
 .section-title {
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: var(--fs-2xl);
   color: var(--green-deep);
   font-weight: 800;
-  margin-bottom: 20px;
+  margin-bottom: var(--space-sm);
   font-family: var(--font-primary);
 }
 
 .section-subtitle {
-  font-size: 1.05rem;
+  font-size: var(--fs-base);
   color: var(--brown-mid);
-  max-width: 640px;
+  max-width: 680px;
   margin: 0 auto;
-  line-height: 1.85;
+  line-height: 1.8;
 }
 
-/* Leaf-shaped gradient divider */
 .section-divider {
-  width: 56px;
-  height: 3px;
+  width: 60px;
+  height: 4px;
   background: linear-gradient(90deg, var(--green-mid), var(--orange-soft));
-  border-radius: 2px;
-  margin: 20px auto 0;
+  border-radius: 4px;
+  margin: var(--space-md) auto 0;
 }
 
-/* Buttons */
+/* ── Buttons ── */
 .btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  padding: 14px 36px;
+  padding: 13px 32px;
   border-radius: 50px;
   font-weight: 600;
   font-family: var(--font-primary);
-  font-size: 0.95rem;
+  font-size: clamp(0.88rem, 2vw, 0.95rem);
   cursor: pointer;
   border: none;
   transition: var(--ease-smooth);
   letter-spacing: 0.3px;
+  /* Comfortable tap target */
+  min-height: 44px;
+  touch-action: manipulation;
 }
 
 .btn-green {
@@ -237,9 +339,11 @@ img {
   box-shadow: var(--shadow-green);
 }
 
-.btn-green:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 36px rgba(45, 106, 45, 0.35);
+@media (hover: hover) {
+  .btn-green:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 36px rgba(45, 106, 45, 0.35);
+  }
 }
 
 .btn-orange {
@@ -248,9 +352,11 @@ img {
   box-shadow: var(--shadow-orange);
 }
 
-.btn-orange:hover {
-  background: var(--orange-mid);
-  transform: translateY(-3px);
+@media (hover: hover) {
+  .btn-orange:hover {
+    background: var(--orange-mid);
+    transform: translateY(-3px);
+  }
 }
 
 .btn-outline-green {
@@ -259,9 +365,11 @@ img {
   border: 2px solid var(--green-rich);
 }
 
-.btn-outline-green:hover {
-  background: var(--green-mist);
-  transform: translateY(-3px);
+@media (hover: hover) {
+  .btn-outline-green:hover {
+    background: var(--green-mist);
+    transform: translateY(-3px);
+  }
 }
 
 .btn-outline-cream {
@@ -270,10 +378,12 @@ img {
   border: 2px solid rgba(245, 234, 208, 0.6);
 }
 
-.btn-outline-cream:hover {
-  background: rgba(245, 234, 208, 0.12);
-  border-color: var(--cream-warm);
-  transform: translateY(-4px);
+@media (hover: hover) {
+  .btn-outline-cream:hover {
+    background: rgba(245, 234, 208, 0.12);
+    border-color: var(--cream-warm);
+    transform: translateY(-4px);
+  }
 }
 
 /* Section wrapper */
@@ -282,12 +392,11 @@ img {
   max-width: var(--max-width);
   margin: 0 auto;
   width: 100%;
-  overflow-x: hidden;
 }
 
 .section-center {
   text-align: center;
-  margin-bottom: 70px;
+  margin-bottom: clamp(40px, 7vw, 70px);
 }
 
 /* ============================================================
@@ -296,7 +405,7 @@ img {
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(30px);
   }
 
   to {
@@ -309,11 +418,11 @@ img {
 
   0%,
   100% {
-    transform: translateY(0);
+    transform: translateX(-50%) translateY(0);
   }
 
   50% {
-    transform: translateY(-12px);
+    transform: translateX(-50%) translateY(-10px);
   }
 }
 
@@ -347,18 +456,18 @@ img {
 
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgba(212, 98, 42, 0.35);
+    box-shadow: 0 8px 30px rgba(212, 98, 42, 0.45), 0 0 0 0 rgba(212, 98, 42, 0.35);
   }
 
   50% {
-    box-shadow: 0 0 0 14px rgba(212, 98, 42, 0);
+    box-shadow: 0 8px 30px rgba(212, 98, 42, 0.55), 0 0 0 12px rgba(212, 98, 42, 0);
   }
 }
 
 @keyframes slideIn {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(24px);
   }
 
   to {
@@ -376,8 +485,9 @@ img {
 /* Scroll reveal */
 .reveal {
   opacity: 0;
-  transform: translateY(36px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  will-change: opacity, transform;
 }
 
 .reveal.visible {
@@ -385,7 +495,7 @@ img {
   transform: translateY(0);
 }
 
-/* Text gradient */
+/* Text gradient utility */
 .text-eco {
   background: linear-gradient(135deg, var(--green-mid), var(--orange-soft));
   -webkit-background-clip: text;
@@ -393,17 +503,13 @@ img {
   -webkit-text-fill-color: transparent;
 }
 
-/* Kraft paper texture pattern */
+/* Kraft paper texture */
 .kraft-texture {
   background-image:
     repeating-linear-gradient(45deg,
-      rgba(107, 61, 30, 0.04) 0px,
-      rgba(107, 61, 30, 0.04) 1px,
-      transparent 1px,
-      transparent 8px),
+      rgba(107, 61, 30, 0.04) 0px, rgba(107, 61, 30, 0.04) 1px,
+      transparent 1px, transparent 8px),
     repeating-linear-gradient(-45deg,
-      rgba(107, 61, 30, 0.03) 0px,
-      rgba(107, 61, 30, 0.03) 1px,
-      transparent 1px,
-      transparent 8px);
+      rgba(107, 61, 30, 0.03) 0px, rgba(107, 61, 30, 0.03) 1px,
+      transparent 1px, transparent 8px);
 }

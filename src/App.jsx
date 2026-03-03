@@ -220,7 +220,7 @@ function App() {
       <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
         <div className="nav-container">
           <div className="logo">
-            <img src="/logo.png" alt="NCFP 3.0" className="nav-logo" loading="lazy" />
+            <img src="/logo.png" alt="NCFP 3.0" className="nav-logo" loading="eager" fetchpriority="high" />
           </div>
           <div className="nav-center">
             <p className="college-name">
@@ -236,12 +236,19 @@ function App() {
                 <i className="fab fa-instagram"></i>
               </a>
             </div>
-            <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">
+            <button
+              className="hamburger"
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={menuOpen}
+              aria-controls="nav-menu"
+              type="button"
+            >
               <i className={`fas ${menuOpen ? 'fa-times' : 'fa-bars'}`}></i>
-            </div>
+            </button>
           </div>
         </div>
-        <div className={`nav-menu ${menuOpen ? 'open' : ''}`}>
+        <div className={`nav-menu ${menuOpen ? 'open' : ''}`} id="nav-menu" role="navigation" aria-label="Main navigation">
           <div className="nav-menu-links">
             {['home', 'about', 'themes', 'speakers', 'why', 'contact'].map(id => (
               <a key={id} href={`#${id}`} onClick={() => setMenuOpen(false)}>
@@ -354,7 +361,7 @@ function App() {
               <StatCounter value="400+" label="Participants" />
               <StatCounter value="20+" label="Expert Speakers" />
             </div>
-            <div style={{ marginTop: '40px', display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+            <div style={{ marginTop: '32px', display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
               <a href="#themes" className="btn btn-maroon">
                 <i className="fas fa-compass"></i> Explore Themes
               </a>
