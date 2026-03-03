@@ -1,69 +1,94 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Playfair+Display:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap');
 
 /* ============================================================
-   NCFP 3.0 — PREMIUM DESIGN SYSTEM
-   STRICT RULE: Only Green & Maroon. No black. No white. No grey.
+   NCFP 3.0 — FOOD PACKAGING DESIGN SYSTEM
+   Palette: Fresh Green · Earthy Brown · Warm Beige · Soft Orange
+   Theme: Freshness · Sustainability · Food Safety · Innovation
    ============================================================ */
 :root {
-  /* === MAROON FAMILY === */
-  --maroon-deep: #4a0810;
-  /* Deepest maroon — footer BG, heavy headings */
-  --maroon-rich: #921a22;
-  /* Primary brand maroon — buttons, accents */
-  --maroon-mid: #b84a52;
-  /* Mid maroon — hover states, borders */
-  --maroon-soft: #d4888e;
-  /* Soft maroon — muted text, dividers */
-  --maroon-blush: #f0d0d2;
-  /* Pale maroon — card backgrounds, section BG */
-  --maroon-mist: #faf0f0;
-  /* Near-white maroon tint — lightest BG */
+  /* === FRESH GREEN FAMILY (Eco & Sustainability) === */
+  --green-deep: #1b3d1b;
+  /* Deep forest — hero bg, footer */
+  --green-rich: #2d6a2d;
+  /* Brand green — primary buttons */
+  --green-mid: #4a9e4a;
+  /* Mid green — links, accents */
+  --green-sage: #7ab87a;
+  /* Sage — muted text on dark */
+  --green-leaf: #a8d5a8;
+  /* Light leaf — subtle accents */
+  --green-mist: #edf7ed;
+  /* Near-white green — light BG */
+  --green-foam: #f4faf4;
+  /* Lightest BG wash */
 
-  /* === GREEN FAMILY === */
-  --green-deep: #0f2d1c;
-  /* Deepest green — dark section BG */
-  --green-rich: #1a4d2e;
-  /* Primary brand green — main color */
-  --green-mid: #2d7a4f;
-  /* Mid green — links, secondary accents */
-  --green-sage: #6aab81;
-  /* Sage green — muted text on dark BG */
-  --green-mint: #b0d9be;
-  /* Mint green — light text, subtle elements */
-  --green-mist: #eaf5ee;
-  /* Near-white green tint — lightest BG */
+  /* === EARTHY BROWN FAMILY (Kraft Paper / Corrugated) === */
+  --brown-deep: #3d2010;
+  /* Dark kraft — footer, kraft BG */
+  --brown-rich: #6b3d1e;
+  /* Primary brown — kraft paper */
+  --brown-mid: #9b6240;
+  /* Mid brown — borders, dividers */
+  --brown-warm: #c4936a;
+  /* Warm tan — hover states */
+  --brown-sand: #dbb88a;
+  /* Sandy — card borders */
+  --brown-blush: #f0dcc8;
+  /* Light tan — section BG */
 
-  /* === SAFE AREAS (for mobile) === */
+  /* === WARM BEIGE / CREAM FAMILY (Natural Packaging) === */
+  --cream-deep: #d4ba8a;
+  /* Deep cream — borders */
+  --cream-warm: #f5ead0;
+  /* Warm cream — section BG */
+  --cream-light: #faf3e0;
+  /* Light cream — lightest BG */
+  --cream-white: #fdfaf4;
+  /* Near white — card BG */
+
+  /* === SOFT ORANGE FAMILY (Food Vibrancy) === */
+  --orange-rich: #d4622a;
+  /* Tomato-orange — CTAs, hero badges */
+  --orange-mid: #e07b3a;
+  /* Warm orange — hover states */
+  --orange-soft: #f0a060;
+  /* Soft peach — muted accents */
+  --orange-mist: #fdf0e6;
+  /* Orange mist — subtle BG wash */
+
+  /* === SAFE AREAS (mobile) === */
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
   --safe-left: env(safe-area-inset-left, 0px);
   --safe-right: env(safe-area-inset-right, 0px);
 
   /* === GRADIENTS === */
-  --gradient-gm: linear-gradient(135deg, var(--green-rich) 0%, var(--maroon-rich) 100%);
-  --gradient-mg: linear-gradient(135deg, var(--maroon-rich) 0%, var(--green-rich) 100%);
-  --gradient-hero: linear-gradient(160deg, var(--green-deep) 0%, #1a0c0e 50%, var(--green-deep) 100%);
-  --gradient-soft: linear-gradient(135deg, var(--green-mist) 0%, var(--maroon-mist) 100%);
+  --gradient-hero: linear-gradient(155deg, var(--green-deep) 0%, #0f2a0f 35%, var(--brown-deep) 75%, #1e0a00 100%);
+  --gradient-eco: linear-gradient(135deg, var(--green-rich) 0%, var(--green-mid) 100%);
+  --gradient-kraft: linear-gradient(135deg, var(--brown-deep) 0%, var(--brown-rich) 100%);
+  --gradient-warm: linear-gradient(135deg, var(--cream-warm) 0%, var(--brown-blush) 100%);
+  --gradient-fresh: linear-gradient(135deg, var(--green-mist) 0%, var(--cream-light) 50%, var(--orange-mist) 100%);
+  --gradient-cta: linear-gradient(135deg, var(--brown-rich) 0%, var(--green-deep) 100%);
+  --gradient-stat: linear-gradient(135deg, var(--orange-soft), var(--brown-warm));
 
-  /* === GLASSMORPHISM (green/maroon tinted) === */
-  --glass-bg: rgba(234, 245, 238, 0.6);
-  --glass-border: rgba(26, 77, 46, 0.2);
-  --glass-shadow: 0 8px 40px rgba(146, 26, 34, 0.12);
-  --glass-maroon: rgba(250, 240, 240, 0.65);
-  --glass-m-border: rgba(146, 26, 34, 0.2);
+  /* === GLASSMORPHISM === */
+  --glass-cream: rgba(250, 243, 224, 0.82);
+  --glass-cream-b: rgba(212, 186, 138, 0.3);
+  --glass-green: rgba(237, 247, 237, 0.75);
+  --glass-green-b: rgba(74, 158, 74, 0.2);
 
   /* === SHADOWS === */
-  --shadow-sm: 0 4px 16px rgba(74, 8, 16, 0.08);
-  --shadow-md: 0 8px 32px rgba(74, 8, 16, 0.12);
-  --shadow-lg: 0 20px 60px rgba(74, 8, 16, 0.16);
-  --shadow-green: 0 8px 30px rgba(26, 77, 46, 0.2);
-  --shadow-maroon: 0 8px 30px rgba(146, 26, 34, 0.2);
+  --shadow-sm: 0 4px 16px rgba(61, 32, 16, 0.08);
+  --shadow-md: 0 8px 32px rgba(61, 32, 16, 0.12);
+  --shadow-lg: 0 20px 60px rgba(61, 32, 16, 0.16);
+  --shadow-green: 0 8px 32px rgba(45, 106, 45, 0.2);
+  --shadow-orange: 0 8px 32px rgba(212, 98, 42, 0.25);
+  --shadow-kraft: 0 8px 32px rgba(107, 61, 30, 0.2);
 
   /* === TYPOGRAPHY === */
-  --font-serif: 'Playfair Display', Georgia, serif;
-  --font-sans: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+  --font-primary: 'Outfit', 'Inter', system-ui, sans-serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
   --font-display: 'Cormorant Garamond', Georgia, serif;
-  /* Unique display font for numerals & accents */
 
   /* === LAYOUT === */
   --radius-sm: 8px;
@@ -96,9 +121,9 @@ body {
 }
 
 body {
-  font-family: var(--font-sans);
-  color: var(--green-rich);
-  background-color: var(--green-mist);
+  font-family: var(--font-primary);
+  color: var(--brown-rich);
+  background-color: var(--cream-white);
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
 }
@@ -109,8 +134,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-serif);
-  color: var(--maroon-deep);
+  font-family: var(--font-primary);
+  color: var(--green-deep);
   line-height: 1.2;
   font-weight: 700;
 }
@@ -133,32 +158,31 @@ img {
 /* ============================================================
    UTILITY CLASSES
    ============================================================ */
-
-/* Glass variants */
-.glass-green {
-  background: var(--glass-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--glass-shadow);
+.glass-cream {
+  background: var(--glass-cream);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-cream-b);
+  box-shadow: var(--shadow-md);
 }
 
-.glass-maroon {
-  background: var(--glass-maroon);
-  -webkit-backdrop-filter: blur(16px);
+.glass-green {
+  background: var(--glass-green);
   backdrop-filter: blur(16px);
-  border: 1px solid var(--glass-m-border);
-  box-shadow: var(--shadow-md);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-green-b);
+  box-shadow: var(--shadow-sm);
 }
 
 /* Section tag / badge */
 .section-tag {
   display: inline-block;
   padding: 6px 18px;
-  background: var(--maroon-blush);
-  color: var(--maroon-rich);
+  background: var(--orange-mist);
+  color: var(--orange-rich);
+  border: 1px solid rgba(212, 98, 42, 0.25);
   border-radius: 50px;
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   font-weight: 700;
   font-family: var(--font-sans);
   text-transform: uppercase;
@@ -166,27 +190,27 @@ img {
   margin-bottom: 20px;
 }
 
-/* Headings */
 .section-title {
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
-  color: var(--maroon-deep);
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--green-deep);
   font-weight: 800;
   margin-bottom: 20px;
+  font-family: var(--font-primary);
 }
 
 .section-subtitle {
-  font-size: 1.1rem;
-  color: var(--green-mid);
+  font-size: 1.05rem;
+  color: var(--brown-mid);
   max-width: 640px;
   margin: 0 auto;
-  line-height: 1.8;
+  line-height: 1.85;
 }
 
-/* Divider */
+/* Leaf-shaped gradient divider */
 .section-divider {
-  width: 60px;
+  width: 56px;
   height: 3px;
-  background: var(--maroon-rich);
+  background: linear-gradient(90deg, var(--green-mid), var(--orange-soft));
   border-radius: 2px;
   margin: 20px auto 0;
 }
@@ -199,7 +223,7 @@ img {
   padding: 14px 36px;
   border-radius: 50px;
   font-weight: 600;
-  font-family: var(--font-sans);
+  font-family: var(--font-primary);
   font-size: 0.95rem;
   cursor: pointer;
   border: none;
@@ -207,50 +231,49 @@ img {
   letter-spacing: 0.3px;
 }
 
-.btn-maroon {
-  background: var(--maroon-rich);
-  color: var(--green-mist);
-  box-shadow: var(--shadow-maroon);
-}
-
-.btn-maroon:hover {
-  background: var(--maroon-deep);
-  transform: translateY(-3px);
-  box-shadow: 0 12px 36px rgba(146, 26, 34, 0.35);
-}
-
 .btn-green {
-  background: var(--green-rich);
-  color: var(--green-mint);
+  background: var(--gradient-eco);
+  color: #fff;
   box-shadow: var(--shadow-green);
 }
 
 .btn-green:hover {
-  background: var(--green-deep);
   transform: translateY(-3px);
-  box-shadow: 0 12px 36px rgba(26, 77, 46, 0.35);
+  box-shadow: 0 12px 36px rgba(45, 106, 45, 0.35);
 }
 
-.btn-outline-mint {
+.btn-orange {
+  background: var(--orange-rich);
+  color: #fff;
+  box-shadow: var(--shadow-orange);
+}
+
+.btn-orange:hover {
+  background: var(--orange-mid);
+  transform: translateY(-3px);
+}
+
+.btn-outline-green {
   background: transparent;
-  color: var(--green-mint);
-  border: 2px solid var(--green-mint);
+  color: var(--green-rich);
+  border: 2px solid var(--green-rich);
 }
 
-.btn-outline-mint:hover {
-  background: rgba(176, 217, 190, 0.15);
+.btn-outline-green:hover {
+  background: var(--green-mist);
   transform: translateY(-3px);
 }
 
-.btn-outline-maroon {
+.btn-outline-cream {
   background: transparent;
-  color: var(--maroon-rich);
-  border: 2px solid var(--maroon-rich);
+  color: var(--cream-warm);
+  border: 2px solid rgba(245, 234, 208, 0.6);
 }
 
-.btn-outline-maroon:hover {
-  background: var(--maroon-blush);
-  transform: translateY(-3px);
+.btn-outline-cream:hover {
+  background: rgba(245, 234, 208, 0.12);
+  border-color: var(--cream-warm);
+  transform: translateY(-4px);
 }
 
 /* Section wrapper */
@@ -300,7 +323,7 @@ img {
   }
 
   50% {
-    transform: translateX(-2%) scaleY(1.05);
+    transform: translateX(-2%) scaleY(1.04);
   }
 
   100% {
@@ -308,21 +331,45 @@ img {
   }
 }
 
+@keyframes leafSway {
+
+  0%,
+  100% {
+    transform: rotate(-5deg) translateY(0);
+  }
+
+  50% {
+    transform: rotate(5deg) translateY(-8px);
+  }
+}
+
 @keyframes pulseGlow {
 
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgba(176, 217, 190, 0.4);
+    box-shadow: 0 0 0 0 rgba(212, 98, 42, 0.35);
   }
 
   50% {
-    box-shadow: 0 0 0 14px rgba(176, 217, 190, 0);
+    box-shadow: 0 0 0 14px rgba(212, 98, 42, 0);
   }
 }
 
-@keyframes borderSpin {
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
   to {
-    background-position: 200% center;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spinSlow {
+  to {
+    transform: rotate(360deg);
   }
 }
 
@@ -339,9 +386,24 @@ img {
 }
 
 /* Text gradient */
-.text-gm {
-  background: var(--gradient-gm);
+.text-eco {
+  background: linear-gradient(135deg, var(--green-mid), var(--orange-soft));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+/* Kraft paper texture pattern */
+.kraft-texture {
+  background-image:
+    repeating-linear-gradient(45deg,
+      rgba(107, 61, 30, 0.04) 0px,
+      rgba(107, 61, 30, 0.04) 1px,
+      transparent 1px,
+      transparent 8px),
+    repeating-linear-gradient(-45deg,
+      rgba(107, 61, 30, 0.03) 0px,
+      rgba(107, 61, 30, 0.03) 1px,
+      transparent 1px,
+      transparent 8px);
 }
