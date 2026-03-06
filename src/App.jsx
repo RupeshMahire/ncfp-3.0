@@ -3,6 +3,7 @@ import './App.css'
 import GlimpsesPage from './GlimpsesPage'
 import CommitteePage from './CommitteePage'
 import SpeakersPage from './SpeakersPage'
+import PatronPage from './PatronPage'
 
 const BROCHURE_PDF_PATH = '/brochure.pdf' // Path to the brochure PDF in the public folder
 
@@ -52,30 +53,40 @@ const whyData = [
     stat: '400+',
     title: 'Participants',
     desc: 'Connect with researchers, industry leaders & policymakers from across India in the food packaging ecosystem.',
+    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=900&auto=format&fit=crop&q=80',
+    imageAlt: 'Large conference hall full of attendees',
   },
   {
     icon: 'fa-microphone-alt',
     stat: '20+',
     title: 'Keynote Sessions',
     desc: 'World-class speakers delivering cutting-edge insights on packaging innovation & sustainability.',
+    image: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=900&auto=format&fit=crop&q=80',
+    imageAlt: 'Expert keynote speaker on stage',
   },
   {
     icon: 'fa-handshake',
     stat: '50+',
     title: 'Industry Partners',
     desc: 'Forging powerful industry-academia collaborations that drive real-world packaging impact.',
+    image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=900&auto=format&fit=crop&q=80',
+    imageAlt: 'Industry professionals collaborating',
   },
   {
     icon: 'fa-leaf',
     stat: '10+',
     title: 'Innovation Showcases',
     desc: 'Live demonstrations of breakthrough sustainable packaging technologies & eco-friendly products.',
+    image: 'https://images.unsplash.com/photo-1610979840545-bf7b2cb0aa7e?w=900&auto=format&fit=crop&q=80',
+    imageAlt: 'Sustainable eco-friendly packaging innovation',
   },
   {
     icon: 'fa-network-wired',
     stat: '∞',
     title: 'Networking',
     desc: 'Structured networking sessions designed for meaningful professional connections across the packaging industry.',
+    image: 'https://images.unsplash.com/photo-1561489413-985b06da5bee?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    imageAlt: 'Professionals networking at a conference',
   },
 ];
 
@@ -204,10 +215,20 @@ function App() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [whySlide, setWhySlide] = useState(0);
-  const [showGlimpses, setShowGlimpses] = useState(false);
-  const [showCommittee, setShowCommittee] = useState(false);
-  const [showSpeakers, setShowSpeakers] = useState(false);
+  const [currentRoute, setCurrentRoute] = useState(window.location.pathname);
   const [showPDFModal, setShowPDFModal] = useState(false);
+
+  useEffect(() => {
+    const handlePopState = () => setCurrentRoute(window.location.pathname);
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  const navigateTo = (path) => {
+    window.history.pushState({}, '', path);
+    setCurrentRoute(path);
+    setTimeout(() => window.scrollTo({ top: 0, behavior: 'instant' }), 0);
+  };
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 60);
@@ -223,7 +244,19 @@ function App() {
       window.removeEventListener('scroll', handleScroll);
       observer.disconnect();
     };
-  }, [showGlimpses, showCommittee, showSpeakers]); // re-run when page changes
+  }, [currentRoute]); // re-run when page changes
+
+  useEffect(() => {
+    const titles = {
+      '/': "NCFP 3.0 | National Conference on Food Packaging | PVGCOET Pune",
+      '/gallery': "NCFP 3.0 Event Glimpses | PVGCOET Pune",
+      '/committee': "NCFP 3.0 Organizing Committee | PVGCOET Pune",
+      '/speakers': "NCFP 3.0 Keynote Speakers | PVGCOET Pune",
+      '/patrons': "NCFP 3.0 Patrons & Sponsors | PVGCOET Pune",
+      '/contact': "Contact | NCFP 3.0 Food Packaging Conference"
+    };
+    document.title = titles[currentRoute] || titles['/'];
+  }, [currentRoute]);
 
   // Auto-advance why slideshow
   useEffect(() => {
@@ -234,27 +267,23 @@ function App() {
   }, []);
 
   /* ── Glimpses Page ── */
-  if (showGlimpses) {
-    return <GlimpsesPage onBack={() => {
-      setShowGlimpses(false);
-      setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 50);
-    }} />;
+  if (currentRoute === '/gallery') {
+    return <GlimpsesPage onBack={() => navigateTo('/')} />;
   }
 
   /* ── Committee Page ── */
-  if (showCommittee) {
-    return <CommitteePage onBack={() => {
-      setShowCommittee(false);
-      setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 50);
-    }} />;
+  if (currentRoute === '/committee') {
+    return <CommitteePage onBack={() => navigateTo('/')} />;
   }
 
   /* ── Speakers Page ── */
-  if (showSpeakers) {
-    return <SpeakersPage onBack={() => {
-      setShowSpeakers(false);
-      setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 50);
-    }} />;
+  if (currentRoute === '/speakers') {
+    return <SpeakersPage onBack={() => navigateTo('/')} />;
+  }
+
+  /* ── Patron Page ── */
+  if (currentRoute === '/patrons') {
+    return <PatronPage onBack={() => navigateTo('/')} />;
   }
 
   return (
@@ -297,22 +326,28 @@ function App() {
         <div className={`nav-menu ${menuOpen ? 'open' : ''}`} id="nav-menu" role="navigation" aria-label="Main navigation">
           <div className="nav-menu-links">
             <a
-              href="#speakers"
-              onClick={(e) => { e.preventDefault(); setMenuOpen(false); setShowSpeakers(true); }}
+              href="/speakers"
+              onClick={(e) => { e.preventDefault(); setMenuOpen(false); navigateTo('/speakers'); }}
             >
               <i className="fas fa-microphone-alt" style={{ marginRight: '6px' }}></i>Speakers
             </a>
             <a
-              href="#glimpses"
-              onClick={(e) => { e.preventDefault(); setMenuOpen(false); setShowGlimpses(true); }}
+              href="/gallery"
+              onClick={(e) => { e.preventDefault(); setMenuOpen(false); navigateTo('/gallery'); }}
             >
               <i className="fas fa-images" style={{ marginRight: '6px' }}></i>Glimpses
             </a>
             <a
-              href="#committee"
-              onClick={(e) => { e.preventDefault(); setMenuOpen(false); setShowCommittee(true); }}
+              href="/committee"
+              onClick={(e) => { e.preventDefault(); setMenuOpen(false); navigateTo('/committee'); }}
             >
               <i className="fas fa-users" style={{ marginRight: '6px' }}></i>Committee
+            </a>
+            <a
+              href="/patrons"
+              onClick={(e) => { e.preventDefault(); setMenuOpen(false); navigateTo('/patrons'); }}
+            >
+              <i className="fas fa-award" style={{ marginRight: '6px' }}></i>Patron
             </a>
           </div>
         </div>
@@ -371,10 +406,10 @@ function App() {
             >
               <i className="fas fa-download"></i> Download Brochure
             </button>
-            <button className="btn-hero-glimpses" onClick={() => setShowSpeakers(true)}>
+            <button className="btn-hero-glimpses" onClick={() => navigateTo('/speakers')}>
               <i className="fas fa-microphone-alt"></i> View Previous Speakers
             </button>
-            <button className="btn-hero-glimpses" onClick={() => setShowGlimpses(true)}>
+            <button className="btn-hero-glimpses" onClick={() => navigateTo('/gallery')}>
               <i className="fas fa-images"></i> View Event Glimpses
             </button>
           </div>
@@ -528,7 +563,7 @@ function App() {
               <i className="fas fa-handshake" style={{ marginRight: '6px' }}></i>
               Partners in Excellence
             </span>
-            <h2 className="section-title">Our Previous Year Patrons</h2>
+            <h2 className="section-title">Our Previous Year Sponsors</h2>
             <p className="section-subtitle" style={{ fontSize: '0.85rem', color: 'var(--brown-warm)', marginTop: '8px' }}>
               NCFP 1.0 (2024) &amp; NCFP 2.0 (2025) Sponsors
             </p>
@@ -572,17 +607,33 @@ function App() {
             >
               <div className="why-slide-bg-num">{String(i + 1).padStart(2, '0')}</div>
 
-              <div className="why-slide-content">
-                <div className="why-slide-tag">
-                  <i className="fas fa-seedling" style={{ marginRight: '8px' }}></i>
-                  Reasons to Join · Why Attend NCFP 3.0?
+              <div className="why-slide-inner">
+                <div className="why-slide-content">
+                  <div className="why-slide-tag">
+                    <i className="fas fa-seedling" style={{ marginRight: '8px' }}></i>
+                    Reasons to Join · Why Attend NCFP 3.0?
+                  </div>
+                  <div className="why-slide-icon">
+                    <i className={`fas ${item.icon}`}></i>
+                  </div>
+                  <div className="why-slide-stat">{item.stat}</div>
+                  <h2 className="why-slide-title">{item.title}</h2>
+                  <p className="why-slide-desc">{item.desc}</p>
                 </div>
-                <div className="why-slide-icon">
-                  <i className={`fas ${item.icon}`}></i>
+
+                <div className="why-slide-image-panel">
+                  <img
+                    src={item.image}
+                    alt={item.imageAlt}
+                    className="why-slide-image"
+                    loading="lazy"
+                  />
+                  <div className="why-slide-image-overlay"></div>
+                  <div className="why-slide-image-badge">
+                    <i className={`fas ${item.icon}`}></i>
+                    <span>{item.title}</span>
+                  </div>
                 </div>
-                <div className="why-slide-stat">{item.stat}</div>
-                <h2 className="why-slide-title">{item.title}</h2>
-                <p className="why-slide-desc">{item.desc}</p>
               </div>
 
               <div className="why-dots">
@@ -624,29 +675,46 @@ function App() {
 
       {/* CTA Section */}
       <div id="contact" className="cta-section reveal">
-        <div className="cta-inner">
-          <div className="cta-label">
-            <i className="fas fa-ticket-alt" style={{ marginRight: '8px' }}></i>
-            Limited Seats Available
+        <div className="cta-container">
+          <div className="cta-content">
+            <div className="cta-label">
+              <i className="fas fa-ticket-alt" style={{ marginRight: '8px' }}></i>
+              Limited Seats Available
+            </div>
+            <h2 className="cta-title">Join the Packaging Evolution 2026</h2>
+            <p className="cta-subtitle">
+              Be part of the transformational journey shaping the future of food packaging in India.
+              Secure your place at NCFP 3.0 today.
+            </p>
+            <div className="cta-btns">
+              <a href="https://forms.gle/B4ZhHZuCrwnBVuSG9" target="_blank" rel="noopener noreferrer" className="btn-hero-primary">
+                <i className="fas fa-rocket"></i> Register Now
+              </a>
+              <button className="btn-hero-secondary" onClick={() => navigateTo('/gallery')}>
+                <i className="fas fa-images"></i> View Event Glimpses
+              </button>
+            </div>
           </div>
-          <h2 className="cta-title">Join the Packaging Evolution 2026</h2>
-          <p className="cta-subtitle">
-            Be part of the transformational journey shaping the future of food packaging in India.
-            Secure your place at NCFP 3.0 today.
-          </p>
-          <div className="cta-btns">
-            <a href="https://forms.gle/B4ZhHZuCrwnBVuSG9" target="_blank" rel="noopener noreferrer" className="btn-hero-primary">
-              <i className="fas fa-rocket"></i> Register Now
-            </a>
-            <button className="btn-hero-secondary" onClick={() => setShowGlimpses(true)}>
-              <i className="fas fa-images"></i> View Event Glimpses
-            </button>
+          <div className="cta-image-wrapper">
+            <div className="cta-image-backdrop"></div>
+            <img src="/cta_image.png" alt="Modern Sustainable Packaging" className="cta-image" loading="lazy" />
           </div>
         </div>
       </div>
 
       {/* Footer */}
       <footer className="footer">
+
+        {/* SEO Content Section */}
+        <div className="seo-footer-section">
+          <div className="seo-footer-inner">
+            <h3 className="seo-footer-title">About NCFP 3.0 — National Conference on Food Packaging</h3>
+            <p className="seo-footer-text">
+              <strong>NCFP (National Conference on Food Packaging)</strong> is a premier national-level conference organized at <strong>PVGCOET Pune</strong> focusing on research, innovation, and sustainability in food packaging. The conference brings together researchers, students, and industry experts to discuss emerging trends in packaging technology, sustainable materials, and food safety.
+            </p>
+          </div>
+        </div>
+
         <div className="footer-inner">
           <div className="footer-top">
             <div className="footer-brand">
@@ -670,21 +738,21 @@ function App() {
 
             <div className="footer-col">
               <h4>Quick Links</h4>
-              <a href="#home">Home</a>
-              <a href="#about">About NCFP 3.0</a>
-              <a href="#expect">What to Expect</a>
-              <a href="#themes">Conference Themes</a>
+              <a href="/#home" onClick={(e) => { e.preventDefault(); navigateTo('/'); }}>Home</a>
+              <a href="/#about" onClick={(e) => { if (currentRoute !== '/') navigateTo('/'); setTimeout(() => document.getElementById('about')?.scrollIntoView(), 100); }}>About NCFP 3.0</a>
+              <a href="/#expect" onClick={(e) => { if (currentRoute !== '/') navigateTo('/'); setTimeout(() => document.getElementById('expect')?.scrollIntoView(), 100); }}>What to Expect</a>
+              <a href="/#themes" onClick={(e) => { if (currentRoute !== '/') navigateTo('/'); setTimeout(() => document.getElementById('themes')?.scrollIntoView(), 100); }}>Conference Themes</a>
 
-              <a href="#why">Why Attend</a>
+              <a href="/#why" onClick={(e) => { if (currentRoute !== '/') navigateTo('/'); setTimeout(() => document.getElementById('why')?.scrollIntoView(), 100); }}>Why Attend</a>
               <a
-                href="#glimpses"
-                onClick={(e) => { e.preventDefault(); setShowGlimpses(true); }}
+                href="/gallery"
+                onClick={(e) => { e.preventDefault(); navigateTo('/gallery'); }}
               >
                 Event Glimpses
               </a>
               <a
-                href="#committee"
-                onClick={(e) => { e.preventDefault(); setShowCommittee(true); }}
+                href="/committee"
+                onClick={(e) => { e.preventDefault(); navigateTo('/committee'); }}
               >
                 Core Committee
               </a>
