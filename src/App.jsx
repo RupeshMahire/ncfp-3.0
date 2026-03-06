@@ -382,6 +382,9 @@ function App() {
             <i className="fas fa-leaf" style={{ marginRight: '6px', fontSize: '0.85rem' }}></i>
             Sustainability · Food Safety · AI Innovation
           </div>
+          <p className="hero-description-text">
+            NCFP 3.0 – National Conference on Food Packaging organized by PVGCOET Pune is a national level conference focused on innovation, sustainability and research in food packaging technology.
+          </p>
           <div className="hero-meta">
             <div className="hero-meta-item">
               <i className="fas fa-calendar-alt"></i>
@@ -415,16 +418,12 @@ function App() {
           </div>
         </div>
 
-        <div className="hero-scroll-hint">
-          <span>Scroll</span>
-          <i className="fas fa-chevron-down"></i>
-        </div>
       </header>
 
       {/* ======================================================
           ABOUT SECTION
           ====================================================== */}
-      <section id="about" className="about-section">
+      < section id="about" className="about-section" >
         <div className="about-grid reveal">
           {/* Left — Content */}
           <div className="about-content">
@@ -485,12 +484,12 @@ function App() {
             </div>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* ======================================================
           WHAT TO EXPECT FROM NCFP 3.0 SECTION
           ====================================================== */}
-      <section id="expect" className="expect-section">
+      < section id="expect" className="expect-section" >
         <div className="expect-header reveal">
           <span className="section-tag">
             <i className="fas fa-binoculars" style={{ marginRight: '6px' }}></i>
@@ -522,12 +521,12 @@ function App() {
             Stay Tuned for NCFP 3.0 · 24 March 2026
           </div>
         </div>
-      </section>
+      </section >
 
       {/* ======================================================
           CONFERENCE THEMES SECTION
           ====================================================== */}
-      <section id="themes" className="themes-section">
+      < section id="themes" className="themes-section" >
         <div className="themes-header reveal">
           <span className="section-tag">
             <i className="fas fa-layer-group" style={{ marginRight: '6px' }}></i>
@@ -551,12 +550,12 @@ function App() {
             </div>
           ))}
         </div>
-      </section>
+      </section >
 
       {/* ======================================================
           SPONSORS SECTION (Previous Year Patrons)
           ====================================================== */}
-      <section id="sponsors" className="sponsors-section reveal">
+      < section id="sponsors" className="sponsors-section reveal" >
         <div className="sponsors-container">
           <div className="sponsors-header">
             <span className="section-tag">
@@ -594,11 +593,11 @@ function App() {
             ))}
           </div>
         </div>
-      </section>
+      </section >
 
 
       {/* Why Attend Section — Full-Page Slideshow */}
-      <section id="why" className="why-section">
+      < section id="why" className="why-section" >
         <div className="why-slides">
           {whyData.map((item, i) => (
             <div
@@ -619,20 +618,6 @@ function App() {
                   <div className="why-slide-stat">{item.stat}</div>
                   <h2 className="why-slide-title">{item.title}</h2>
                   <p className="why-slide-desc">{item.desc}</p>
-                </div>
-
-                <div className="why-slide-image-panel">
-                  <img
-                    src={item.image}
-                    alt={item.imageAlt}
-                    className="why-slide-image"
-                    loading="lazy"
-                  />
-                  <div className="why-slide-image-overlay"></div>
-                  <div className="why-slide-image-badge">
-                    <i className={`fas ${item.icon}`}></i>
-                    <span>{item.title}</span>
-                  </div>
                 </div>
               </div>
 
@@ -671,10 +656,10 @@ function App() {
             </div>
           ))}
         </div>
-      </section>
+      </section >
 
       {/* CTA Section */}
-      <div id="contact" className="cta-section reveal">
+      < div id="contact" className="cta-section reveal" >
         <div className="cta-container">
           <div className="cta-content">
             <div className="cta-label">
@@ -700,20 +685,20 @@ function App() {
             <img src="/cta_image.png" alt="Modern Sustainable Packaging" className="cta-image" loading="lazy" />
           </div>
         </div>
-      </div>
+      </div >
 
       {/* Footer */}
-      <footer className="footer">
+      < footer className="footer" >
 
         {/* SEO Content Section */}
-        <div className="seo-footer-section">
+        < div className="seo-footer-section" >
           <div className="seo-footer-inner">
             <h3 className="seo-footer-title">About NCFP 3.0 — National Conference on Food Packaging</h3>
             <p className="seo-footer-text">
               <strong>NCFP (National Conference on Food Packaging)</strong> is a premier national-level conference organized at <strong>PVGCOET Pune</strong> focusing on research, innovation, and sustainability in food packaging. The conference brings together researchers, students, and industry experts to discuss emerging trends in packaging technology, sustainable materials, and food safety.
             </p>
           </div>
-        </div>
+        </div >
 
         <div className="footer-inner">
           <div className="footer-top">
@@ -774,16 +759,17 @@ function App() {
             </span>
           </div>
         </div>
-      </footer>
+      </footer >
 
       {/* PDF Preview Modal */}
-      <PDFModal
+      < PDFModal
         isOpen={showPDFModal}
-        onClose={() => setShowPDFModal(false)}
+        onClose={() => setShowPDFModal(false)
+        }
         pdfPath={BROCHURE_PDF_PATH}
       />
 
-    </div>
+    </div >
   );
 }
 
