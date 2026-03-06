@@ -140,6 +140,13 @@
   font-size: 1.5rem;
 }
 
+@media (max-width: 479px) {
+  .social-icons {
+    gap: 8px;
+    font-size: 1.25rem;
+  }
+}
+
 @media (min-width: 1024px) {
   .social-icons {
     gap: 22px;
@@ -423,11 +430,11 @@
   width: 100%;
 }
 
-@media (max-width: 479px) {
+@media (max-width: 639px) {
   .hero-btns {
     flex-direction: column;
     align-items: stretch;
-    gap: 10px;
+    gap: 12px;
     padding: 0 8px;
   }
 
@@ -1327,9 +1334,10 @@
   }
 }
 
-@media (max-width: 580px) {
+@media (max-width: 640px) {
   .speakers-grid {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
 }
 
@@ -1402,6 +1410,8 @@
 @media (max-width: 768px) {
   .why-slide-inner {
     grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+    /* Add rows on mobile to accommodate image */
   }
 }
 
