@@ -347,6 +347,13 @@
   width: 100%;
 }
 
+@media (max-width: 768px) {
+  .hero-content {
+    padding-top: calc(var(--space-2xl) + 40px);
+    /* Added extra space to clear navbar on mobile */
+  }
+}
+
 .hero-eyebrow {
   display: inline-block;
   padding: 8px 22px;

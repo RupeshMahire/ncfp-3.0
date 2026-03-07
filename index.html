@@ -20,16 +20,19 @@
   <link rel="preload" href="/styles.css" as="style" />
   <link rel="preload" href="/main.js" as="script" />
 
-  <!-- Open Graph / Twitter Card (Restored) -->
+  <!-- Open Graph / Twitter Card -->
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ncfp.pvg.edu.in/" />
   <meta property="og:title" content="NCFP 3.0 — National Conference on Food Packaging 2026" />
   <meta property="og:description"
     content="India's premier food packaging conference — 24 March 2026, PVG's COETM, Pune." />
-  <meta property="og:image" content="/logo.png" />
+  <meta property="og:image" content="https://ncfp.pvg.edu.in/logo.png" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://ncfp.pvg.edu.in/logo.png" />
 
-  <!-- Icons -->
-  <link rel="icon" type="image/png" href="/favicon.png" />
+  <!-- Icons / Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/logo.png" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="apple-touch-icon" href="/logo.png" />
 
   <!-- Google Fonts -->
@@ -44,25 +47,43 @@
   <!-- Structured Data (JSON-LD) -->
   <script type="application/ld+json">
   {
-   "@context": "https://schema.org",
-   "@type": "Event",
-   "name": "NCFP 3.0 – National Conference on Food Packaging",
-   "description": "National Conference on Food Packaging organized at PVGCOET Pune bringing together researchers, industry experts, and students.",
-   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-   "eventStatus": "https://schema.org/EventScheduled",
-   "location": {
-     "@type": "Place",
-     "name": "PVGCOET Pune",
-     "address": {
-       "@type": "PostalAddress",
-       "addressLocality": "Pune",
-       "addressCountry": "India"
-     }
-   },
-   "organizer": {
-     "@type": "Organization",
-     "name": "PVGCOET Pune"
-   }
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "NCFP 3.0 – National Conference on Food Packaging",
+    "url": "https://ncfp.pvg.edu.in/",
+    "logo": "https://ncfp.pvg.edu.in/logo.png",
+    "sameAs": [
+      "https://www.linkedin.com/company/ncfp-pvgcoet/"
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "NCFP 3.0 – National Conference on Food Packaging",
+    "description": "National Conference on Food Packaging organized at PVGCOET Pune bringing together researchers, industry experts, and students.",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "startDate": "2026-03-24",
+    "location": {
+      "@type": "Place",
+      "name": "PVG's College of Engineering and Technology & G. K. Pate (Wani) Institute of Management",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "44, Vidya Nagari, Sahakar Nagar",
+        "addressLocality": "Pune",
+        "postalCode": "411009",
+        "addressRegion": "Maharashtra",
+        "addressCountry": "India"
+      }
+    },
+    "organizer": {
+      "@type": "Organization",
+      "name": "PVGCOET Pune",
+      "url": "https://ncfp.pvg.edu.in/"
+    }
   }
   </script>
 </head>

@@ -383,7 +383,7 @@ function App() {
             Sustainability · Food Safety · AI Innovation
           </div>
           <p className="hero-description-text">
-            NCFP 3.0 – National Conference on Food Packaging organized by PVGCOET Pune is a national level conference focused on innovation, sustainability and research in food packaging technology.
+            NCFP 3.0 – National Conference on Food Packaging organized by PVGCOEM Pune is a national level conference focused on innovation, sustainability and research in food packaging technology.
           </p>
           <div className="hero-meta">
             <div className="hero-meta-item">
@@ -695,7 +695,7 @@ function App() {
           <div className="seo-footer-inner">
             <h3 className="seo-footer-title">About NCFP 3.0 — National Conference on Food Packaging</h3>
             <p className="seo-footer-text">
-              <strong>NCFP (National Conference on Food Packaging)</strong> is a premier national-level conference organized at <strong>PVGCOET Pune</strong> focusing on research, innovation, and sustainability in food packaging. The conference brings together researchers, students, and industry experts to discuss emerging trends in packaging technology, sustainable materials, and food safety.
+              <strong>NCFP (National Conference on Food Packaging)</strong> is a premier national-level conference organized at <strong>PVGCOEM Pune</strong> focusing on research, innovation, and sustainability in food packaging. The conference brings together researchers, students, and industry experts to discuss emerging trends in packaging technology, sustainable materials, and food safety.
             </p>
           </div>
         </div >
