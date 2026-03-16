@@ -92,7 +92,8 @@ const whyData = [
 
 const sponsorsData = [
   { name: 'Fujifilm', logo: '/sponsors/fujifilm.png', type: 'Platinum Sponsor' },
-  { name: 'Chitale Bandhu', logo: '/sponsors/chitale.png', type: 'Gold Sponsor' },
+  { name: 'Vinsak', logo: '/sponsors/vinsak.png', type: 'Gold Sponsor' },
+  { name: 'Printweek', logo: '/sponsors/printweek.svg', type: 'Media Partner' },
 ];
 
 /* ── What to Expect feature cards ── */
@@ -126,6 +127,45 @@ const expectData = [
     icon: 'fa-layer-group',
     title: 'And Much More',
     desc: 'Panel discussions, live product showcases, workshops on circular economy, and interactive innovation zones.',
+  },
+];
+
+const agendaData = [
+  {
+    time: '09:00 AM',
+    event: 'Registration & Welcome Drinks',
+    icon: 'fa-id-card',
+    detail: 'Pick up your conference kit and begin networking.'
+  },
+  {
+    time: '10:30 AM',
+    event: 'Inaugural Ceremony',
+    icon: 'fa-microphone',
+    detail: 'Official commencement with lighting of the lamp.'
+  },
+  {
+    time: '11:30 AM',
+    event: 'Keynote Address',
+    icon: 'fa-user-tie',
+    detail: 'Expert talk on AI-Driven Smart Food Packaging.'
+  },
+  {
+    time: '01:00 PM',
+    event: 'Networking Lunch',
+    icon: 'fa-utensils',
+    detail: 'Gourmet lunch session for all participants.'
+  },
+  {
+    time: '02:00 PM',
+    event: 'Technical Sessions',
+    icon: 'fa-laptop-code',
+    detail: 'Deep dive into sustainability and research tracks.'
+  },
+  {
+    time: '04:30 PM',
+    event: 'Awards & Valedictory',
+    icon: 'fa-trophy',
+    detail: 'Recognizing excellence in research and innovation.'
   },
 ];
 
@@ -211,12 +251,113 @@ function PDFModal({ isOpen, onClose, pdfPath }) {
 /* ============================================================
    APP COMPONENT
    ============================================================ */
+/* ============================================================
+   FEEDBACK MODAL COMPONENT
+   ============================================================ */
+function FeedbackModal({ isOpen, onClose }) {
+  const [name, setName] = useState('');
+  const [rating, setRating] = useState(0);
+  const [hoverRating, setHoverRating] = useState(0);
+  const [comments, setComments] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (rating === 0) return;
+    setSubmitted(true);
+    setTimeout(() => {
+      onClose();
+      setSubmitted(false);
+      setName('');
+      setRating(0);
+      setComments('');
+    }, 2500);
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="feedback-modal-overlay" onClick={onClose}>
+      <div className="feedback-modal-container" onClick={(e) => e.stopPropagation()}>
+        <button className="feedback-modal-close" onClick={onClose} aria-label="Close feedback">
+          <i className="fas fa-times"></i>
+        </button>
+        {submitted ? (
+          <div className="feedback-success">
+            <div className="feedback-success-icon"><i className="fas fa-check-circle"></i></div>
+            <h3>Thank You!</h3>
+            <p>Your feedback has been recorded. We appreciate your participation in NCFP 3.0!</p>
+          </div>
+        ) : (
+          <>
+            <div className="feedback-modal-header">
+              <div className="feedback-modal-icon"><i className="fas fa-comment-dots"></i></div>
+              <h3>Event Feedback</h3>
+              <p>How was your experience at NCFP 3.0? We'd love to hear from you!</p>
+            </div>
+            <form className="feedback-form" onSubmit={handleSubmit}>
+              <div className="feedback-field">
+                <label htmlFor="fb-name">Your Name</label>
+                <input
+                  id="fb-name"
+                  type="text"
+                  placeholder="Enter your name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="feedback-field">
+                <label>Rate Your Experience</label>
+                <div className="feedback-stars">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <button
+                      key={star}
+                      type="button"
+                      className={`feedback-star ${star <= (hoverRating || rating) ? 'active' : ''}`}
+                      onClick={() => setRating(star)}
+                      onMouseEnter={() => setHoverRating(star)}
+                      onMouseLeave={() => setHoverRating(0)}
+                      aria-label={`Rate ${star} star${star > 1 ? 's' : ''}`}
+                    >
+                      <i className="fas fa-star"></i>
+                    </button>
+                  ))}
+                </div>
+                {rating > 0 && (
+                  <span className="feedback-rating-label">
+                    {['', 'Poor', 'Fair', 'Good', 'Very Good', 'Excellent!'][rating]}
+                  </span>
+                )}
+              </div>
+              <div className="feedback-field">
+                <label htmlFor="fb-comments">Comments / Suggestions</label>
+                <textarea
+                  id="fb-comments"
+                  rows={4}
+                  placeholder="Share your thoughts, suggestions, or highlights from the event…"
+                  value={comments}
+                  onChange={(e) => setComments(e.target.value)}
+                />
+              </div>
+              <button type="submit" className="feedback-submit" disabled={rating === 0}>
+                <i className="fas fa-paper-plane"></i> Submit Feedback
+              </button>
+            </form>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function App() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [whySlide, setWhySlide] = useState(0);
   const [currentRoute, setCurrentRoute] = useState(window.location.pathname);
   const [showPDFModal, setShowPDFModal] = useState(false);
+  const [showFeedbackModal, setShowFeedbackModal] = useState(false);
 
   useEffect(() => {
     const handlePopState = () => setCurrentRoute(window.location.pathname);
@@ -304,7 +445,7 @@ function App() {
           </div>
           <div className="nav-right">
             <div className="social-icons">
-              <a href="https://www.linkedin.com/in/ncfp-pvg-coet-pune-030a74356?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <a href="https://www.linkedin.com/in/national-conference-on-food-packaging-pvgcoet-3243183b4?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                 <i className="fab fa-linkedin"></i>
               </a>
               <a href="https://www.instagram.com/ncfp_2026" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
@@ -410,7 +551,7 @@ function App() {
               <i className="fas fa-download"></i> Download Brochure
             </button>
             <button className="btn-hero-glimpses" onClick={() => navigateTo('/speakers')}>
-              <i className="fas fa-microphone-alt"></i> View Previous Speakers
+              <i className="fas fa-microphone-alt"></i> Speakers
             </button>
             <button className="btn-hero-glimpses" onClick={() => navigateTo('/gallery')}>
               <i className="fas fa-images"></i> View Event Glimpses
@@ -485,6 +626,49 @@ function App() {
           </div>
         </div>
       </section >
+
+      {/* ======================================================
+          AGENDA SECTION
+          ====================================================== */}
+      <section id="agenda" className="agenda-section">
+        <div className="agenda-container reveal">
+          <div className="agenda-header">
+            <span className="section-tag">
+              <i className="fas fa-calendar-check" style={{ marginRight: '6px' }}></i>
+              Conference Schedule
+            </span>
+            <h2 className="section-title">Event Agenda</h2>
+            <p className="section-subtitle">
+              A carefully curated journey through innovations, expert insights, and networking opportunities.
+            </p>
+            <div className="section-divider"></div>
+          </div>
+
+          <div className="agenda-timeline">
+            {agendaData.map((item, i) => (
+              <div key={i} className="agenda-item reveal" style={{ transitionDelay: `${i * 0.1}s` }}>
+                <div className="agenda-time">
+                  <span className="time-badge">{item.time}</span>
+                </div>
+                <div className="agenda-dot-line">
+                  <div className="agenda-dot">
+                    <i className={`fas ${item.icon}`}></i>
+                  </div>
+                </div>
+                <div className="agenda-content-card">
+                  <h3>{item.event}</h3>
+                  <p>{item.detail}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="agenda-disclaimer">
+            <i className="fas fa-info-circle"></i>
+            <span>This is a tentative schedule and is subject to minor adjustments.</span>
+          </div>
+        </div>
+      </section>
 
       {/* ======================================================
           WHAT TO EXPECT FROM NCFP 3.0 SECTION
@@ -562,10 +746,7 @@ function App() {
               <i className="fas fa-handshake" style={{ marginRight: '6px' }}></i>
               Partners in Excellence
             </span>
-            <h2 className="section-title">Our Previous Year Sponsors</h2>
-            <p className="section-subtitle" style={{ fontSize: '0.85rem', color: 'var(--brown-warm)', marginTop: '8px' }}>
-              NCFP 1.0 (2024) &amp; NCFP 2.0 (2025) Sponsors
-            </p>
+            <h2 className="section-title">Sponsors</h2>
             <div className="section-divider"></div>
           </div>
           <div className="sponsors-grid">
@@ -586,9 +767,7 @@ function App() {
                     <span>{s.name}</span>
                   </div>
                 </div>
-                <div className="sponsor-info">
-                  <span className="sponsor-type">{s.type}</span>
-                </div>
+                {s.type && <div className="sponsor-type">{s.type}</div>}
               </div>
             ))}
           </div>
@@ -678,6 +857,9 @@ function App() {
               <button className="btn-hero-secondary" onClick={() => navigateTo('/gallery')}>
                 <i className="fas fa-images"></i> View Event Glimpses
               </button>
+              <a href="https://forms.gle/fhapMFQuGGW2qjLk7" target="_blank" rel="noopener noreferrer" className="btn-feedback">
+                <i className="fas fa-comment-dots"></i> Event Feedback
+              </a>
             </div>
           </div>
           <div className="cta-image-wrapper">
@@ -709,7 +891,7 @@ function App() {
                 advancement of food safety, AI-driven innovation, and sustainable packaging solutions.
               </p>
               <div className="footer-social">
-                <a href="https://www.linkedin.com/in/ncfp-pvg-coet-pune-030a74356?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <a href="https://www.linkedin.com/in/national-conference-on-food-packaging-pvgcoet-3243183b4?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                   <i className="fab fa-linkedin-in"></i>
                 </a>
                 <a href="https://www.instagram.com/ncfp_2026" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
@@ -764,10 +946,28 @@ function App() {
       {/* PDF Preview Modal */}
       < PDFModal
         isOpen={showPDFModal}
-        onClose={() => setShowPDFModal(false)
-        }
+        onClose={() => setShowPDFModal(false)}
         pdfPath={BROCHURE_PDF_PATH}
       />
+
+      {/* Feedback Modal */}
+      <FeedbackModal
+        isOpen={showFeedbackModal}
+        onClose={() => setShowFeedbackModal(false)}
+      />
+
+      {/* Floating Feedback Button */}
+      <a
+        href="https://forms.gle/fhapMFQuGGW2qjLk7"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="floating-feedback-btn"
+        aria-label="Event Feedback"
+        title="Share your event feedback"
+      >
+        <i className="fas fa-comment-dots"></i>
+        <span>Event Feedback</span>
+      </a>
 
     </div >
   );
