@@ -149,7 +149,7 @@ function GlimpsesPage({ onBack }) {
             {/* ── Footer note ── */}
             <div className="glimpses-footer-note">
                 <i className="fas fa-seedling"></i>
-                <span>Stay tuned for <strong>NCFP 3.0 · 2026</strong> — the biggest edition yet.</span>
+                <span>Stay tuned for <strong>NCFP 4.0 · 2027</strong> — the biggest edition yet.</span>
                 <button className="glimpse-back-btn" onClick={onBack}>
                     <i className="fas fa-home"></i> Back to Home
                 </button>

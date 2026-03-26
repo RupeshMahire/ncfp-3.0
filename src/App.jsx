@@ -4,6 +4,7 @@ import GlimpsesPage from './GlimpsesPage'
 import CommitteePage from './CommitteePage'
 import SpeakersPage from './SpeakersPage'
 import PatronPage from './PatronPage'
+import Gallery2026Page from './Gallery2026Page'
 
 const BROCHURE_PDF_PATH = '/brochure.pdf' // Path to the brochure PDF in the public folder
 
@@ -132,40 +133,94 @@ const expectData = [
 
 const agendaData = [
   {
-    time: '09:00 AM',
-    event: 'Registration & Welcome Drinks',
+    time: '08:30 AM – 09:30 AM',
+    event: 'Registration & Breakfast',
     icon: 'fa-id-card',
-    detail: 'Pick up your conference kit and begin networking.'
+    detail: 'Pick up your conference kit and enjoy breakfast while networking.'
   },
   {
-    time: '10:30 AM',
-    event: 'Inaugural Ceremony',
+    time: '10:15 AM – 10:30 AM',
+    event: 'Inaugural & Keynote Address',
     icon: 'fa-microphone',
-    detail: 'Official commencement with lighting of the lamp.'
+    detail: 'Official commencement — Keynote Address by Chief Guest Dr. M.P. Raghav Rao.'
   },
   {
-    time: '11:30 AM',
-    event: 'Keynote Address',
+    time: '11:30 AM – 12:00 PM',
+    event: 'Keynote Address — Mr. Ashutosh Kumar',
     icon: 'fa-user-tie',
-    detail: 'Expert talk on AI-Driven Smart Food Packaging.'
+    detail: 'Keynote by Mr. Ashutosh Kumar [ Vinsak ].'
   },
   {
-    time: '01:00 PM',
-    event: 'Networking Lunch',
+    time: '12:00 PM – 12:30 PM',
+    event: 'Keynote — Prof. Dr. N.C. Saha',
+    icon: 'fa-flask',
+    detail: 'Keynote by Prof. Dr. N.C. Saha [ Ex. IIP Director ].'
+  },
+  {
+    time: '12:30 PM – 01:00 PM',
+    event: 'Keynote — Ms. Anjushree Ramanarayan',
+    icon: 'fa-lightbulb',
+    detail: 'Keynote session by Ms. Anjushree Ramanarayan.'
+  },
+  {
+    time: '01:00 PM – 01:45 PM',
+    event: 'Lunch Break',
     icon: 'fa-utensils',
-    detail: 'Gourmet lunch session for all participants.'
+    detail: 'Networking lunch for all participants.'
   },
   {
-    time: '02:00 PM',
-    event: 'Technical Sessions',
-    icon: 'fa-laptop-code',
-    detail: 'Deep dive into sustainability and research tracks.'
+    time: '01:45 PM – 02:15 PM',
+    event: 'Keynote — Ms. Hetal Shah',
+    icon: 'fa-shield-alt',
+    detail: 'Keynote session by Ms. Hetal Shah.'
   },
   {
-    time: '04:30 PM',
-    event: 'Awards & Valedictory',
+    time: '02:15 PM – 02:35 PM',
+    event: 'Student Paper Presentation',
+    icon: 'fa-graduation-cap',
+    detail: 'Research paper presentations by student participants.'
+  },
+  {
+    time: '02:35 PM – 03:00 PM',
+    event: 'Keynote — Ms. Simran Nawander',
+    icon: 'fa-leaf',
+    detail: 'Keynote session by Ms. Simran Nawander.'
+  },
+  {
+    time: '03:00 PM – 03:30 PM',
+    event: 'Motivational Talk — Mr. Vikram Mehendale',
+    icon: 'fa-rocket',
+    detail: 'Motivational session by Mr. Vikram Mehendale.'
+  },
+  {
+    time: '03:30 PM – 04:00 PM',
+    event: 'Keynote — Dr. Shilpa Anchawale',
+    icon: 'fa-atom',
+    detail: 'Keynote by Dr. Shilpa Anchawale ( Fujifilm ).'
+  },
+  {
+    time: '04:00 PM – 04:15 PM',
+    event: 'Tea Break',
+    icon: 'fa-mug-hot',
+    detail: 'Refreshment break and informal networking.'
+  },
+  {
+    time: '04:15 PM – 05:15 PM',
+    event: 'Panel Discussion',
+    icon: 'fa-comments',
+    detail: 'Expert panel discussion on the future of food packaging.'
+  },
+  {
+    time: '05:15 PM – 05:45 PM',
+    event: 'Valedictory Function & Address',
     icon: 'fa-trophy',
-    detail: 'Recognizing excellence in research and innovation.'
+    detail: 'Felicitation, awards, and closing remarks.'
+  },
+  {
+    time: '05:45 PM – 05:50 PM',
+    event: 'National Anthem',
+    icon: 'fa-flag',
+    detail: 'Closing with the National Anthem.'
   },
 ];
 
@@ -394,7 +449,8 @@ function App() {
       '/committee': "NCFP 3.0 Organizing Committee | PVGCOET Pune",
       '/speakers': "NCFP 3.0 Keynote Speakers | PVGCOET Pune",
       '/patrons': "NCFP 3.0 Patrons & Sponsors | PVGCOET Pune",
-      '/contact': "Contact | NCFP 3.0 Food Packaging Conference"
+      '/contact': "Contact | NCFP 3.0 Food Packaging Conference",
+      '/gallery-2026': "NCFP 3.0 Event Photos | PVGCOET Pune"
     };
     document.title = titles[currentRoute] || titles['/'];
   }, [currentRoute]);
@@ -410,6 +466,11 @@ function App() {
   /* ── Glimpses Page ── */
   if (currentRoute === '/gallery') {
     return <GlimpsesPage onBack={() => navigateTo('/')} />;
+  }
+
+  /* ── Gallery 2026 Page ── */
+  if (currentRoute === '/gallery-2026') {
+    return <Gallery2026Page onBack={() => navigateTo('/')} />;
   }
 
   /* ── Committee Page ── */
@@ -479,6 +540,13 @@ function App() {
               <i className="fas fa-images" style={{ marginRight: '6px' }}></i>Glimpses
             </a>
             <a
+              href="/gallery-2026"
+              onClick={(e) => { e.preventDefault(); setMenuOpen(false); navigateTo('/gallery-2026'); }}
+              style={{ fontWeight: 'bold', color: 'var(--green-rich)' }}
+            >
+              <i className="fas fa-camera-retro" style={{ marginRight: '6px' }}></i>3.0 Photos
+            </a>
+            <a
               href="/committee"
               onClick={(e) => { e.preventDefault(); setMenuOpen(false); navigateTo('/committee'); }}
             >
@@ -513,48 +581,48 @@ function App() {
 
         <div className="hero-content">
           <div className="hero-eyebrow">
-            <i className="fas fa-seedling" style={{ marginRight: '8px' }}></i>
-            3rd Edition · 2026
+            <i className="fas fa-check-circle" style={{ marginRight: '8px' }}></i>
+            NCFP 3.0 Successfully Completed
           </div>
           <h1 className="hero-title">NCFP 3.0</h1>
-          <p className="hero-title-sub">National Conference on Food Packaging</p>
+          <p className="hero-title-sub">Thank You for a Phenomenal Event</p>
           <p className="hero-tagline-main">Innovating the Future of Food Packaging</p>
           <div className="hero-tagline">
             <i className="fas fa-leaf" style={{ marginRight: '6px', fontSize: '0.85rem' }}></i>
             Sustainability · Food Safety · AI Innovation
           </div>
           <p className="hero-description-text">
-            NCFP 3.0 – National Conference on Food Packaging organized by PVGCOEM Pune is a national level conference focused on innovation, sustainability and research in food packaging technology.
+            NCFP 3.0 – National Conference on Food Packaging was a grand success! Thank you to all the participants, speakers, and sponsors for joining us. We look forward to welcoming you to the 4th edition in 2027.
           </p>
           <div className="hero-meta">
             <div className="hero-meta-item">
               <i className="fas fa-calendar-alt"></i>
-              <span>24 March 2026</span>
+              <span>Next Event: 24 March 2027</span>
             </div>
             <div className="hero-meta-item">
               <i className="fas fa-map-marker-alt"></i>
               <span>PVG's COETM, Pune</span>
             </div>
             <div className="hero-meta-item">
-              <i className="fas fa-users"></i>
-              <span>400+ Expected Participants</span>
+              <i className="fas fa-calendar-check"></i>
+              <span>Stay Tuned for NCFP 4.0</span>
             </div>
           </div>
           <div className="hero-btns">
-            <a href="https://forms.gle/B4ZhHZuCrwnBVuSG9" target="_blank" rel="noopener noreferrer" className="btn-hero-primary">
-              <i className="fas fa-rocket"></i> Register Now
-            </a>
+            <button className="btn-hero-primary" disabled style={{ opacity: 0.8, cursor: 'not-allowed' }}>
+              <i className="fas fa-check"></i> Event Completed
+            </button>
+            <button className="btn-hero-secondary" onClick={() => navigateTo('/gallery-2026')} style={{ background: 'var(--green-rich)', borderColor: 'var(--green-rich)' }}>
+              <i className="fas fa-camera-retro"></i> View 3.0 Photos
+            </button>
             <button
               className="btn-hero-secondary"
               onClick={() => setShowPDFModal(true)}
             >
               <i className="fas fa-download"></i> Download Brochure
             </button>
-            <button className="btn-hero-glimpses" onClick={() => navigateTo('/speakers')}>
-              <i className="fas fa-microphone-alt"></i> Speakers
-            </button>
             <button className="btn-hero-glimpses" onClick={() => navigateTo('/gallery')}>
-              <i className="fas fa-images"></i> View Event Glimpses
+              <i className="fas fa-images"></i> Previous Glimpses
             </button>
           </div>
         </div>
@@ -641,6 +709,10 @@ function App() {
             <p className="section-subtitle">
               A carefully curated journey through innovations, expert insights, and networking opportunities.
             </p>
+            <p className="agenda-scroll-note">
+              <i className="fas fa-mouse" style={{ marginRight: '6px' }}></i>
+              with full page scrolling
+            </p>
             <div className="section-divider"></div>
           </div>
 
@@ -671,15 +743,52 @@ function App() {
       </section>
 
       {/* ======================================================
-          WHAT TO EXPECT FROM NCFP 3.0 SECTION
+          CONFERENCE HIGHLIGHTS / FLYERS SECTION
           ====================================================== */}
+      <section id="flyers" className="flyers-section">
+        <div className="flyers-container reveal">
+          <div className="flyers-header">
+            <span className="section-tag">
+              <i className="fas fa-images" style={{ marginRight: '6px' }}></i>
+              Conference Highlights
+            </span>
+            <h2 className="section-title">Event Snapshots</h2>
+            <p className="section-subtitle">
+              A glimpse of the National Conference on Food Packaging 3.0 — speakers, panelists & more.
+            </p>
+            <div className="section-divider"></div>
+          </div>
+
+          <div className="flyers-grid">
+            {[
+              { src: '/flyers/flyer1.jpg', alt: 'NCFP 3.0 — Speakers Flyer' },
+              { src: '/flyers/flyer2.jpg', alt: 'NCFP 3.0 — Panel Discussion Flyer' },
+              { src: '/flyers/flyer3.jpg', alt: 'NCFP 3.0 — Chief Guest & Guest of Honour Flyer' },
+            ].map((flyer, i) => (
+              <div key={i} className="flyer-card reveal" style={{ transitionDelay: `${i * 0.15}s` }}>
+                <div className="flyer-img-wrap">
+                  <img
+                    src={flyer.src}
+                    alt={flyer.alt}
+                    className="flyer-img"
+                    loading="lazy"
+                  />
+                  <div className="flyer-overlay">
+                    <i className="fas fa-search-plus"></i>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
       < section id="expect" className="expect-section" >
         <div className="expect-header reveal">
           <span className="section-tag">
             <i className="fas fa-binoculars" style={{ marginRight: '6px' }}></i>
-            NCFP 3.0 · 2026
+            NCFP 4.0 · 2027
           </span>
-          <h2 className="section-title">What to Expect from NCFP 3.0</h2>
+          <h2 className="section-title">What to Expect from NCFP 4.0</h2>
           <p className="section-subtitle">
             An immersive conference experience designed for industry leaders, researchers, students, and innovators in the food packaging space.
           </p>
@@ -702,7 +811,7 @@ function App() {
         <div className="expect-stay-tuned">
           <div className="stay-tuned-btn">
             <i className="fas fa-bell"></i>
-            Stay Tuned for NCFP 3.0 · 24 March 2026
+            Stay Tuned for NCFP 4.0 · 24 March 2027
           </div>
         </div>
       </section >
