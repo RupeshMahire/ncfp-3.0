@@ -42,8 +42,7 @@ const gallery2026 = [
     { src: '/gallery/2026/PGP_1726.JPG', alt: 'NCFP 3.0 Photo' },
     { src: '/gallery/2026/PGP_1732.JPG.jpeg', alt: 'NCFP 3.0 Photo' },
 ];
-
-const PLACEHOLDER = 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800';
+const PLACEHOLDER = '/gallery/2026/speaker-placeholder.jpg';
 
 function ProgressiveImage({ src, alt, year }) {
     const [loaded, setLoaded] = React.useState(false);
